@@ -1,5 +1,14 @@
 const mongoose = require('mongoose');
 
+// pantry items that can belong to many users (many to many)
+const foodSchema = mongoose.Schema({
+  foods: {
+    type: String,
+    required: true,
+  }
+});
+
+// pantry items that belong to one user
 const userSchema = mongoose.Schema({
   username: {
     type: String,
@@ -9,6 +18,7 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  pantry: [foodSchema],
 });
 
 const User = mongoose.model('User', userSchema);
