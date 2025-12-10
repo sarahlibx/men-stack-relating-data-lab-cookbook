@@ -12,6 +12,7 @@ const passUserToView = require('./middleware/pass-user-to-view.js');
 
 const authController = require('./controllers/auth.js');
 const foodsController = require('./controllers/foods.js');
+const usersController = require('./controllers/users.js');
 
 const port = process.env.PORT ? process.env.PORT : '3000';
 
@@ -31,6 +32,7 @@ app.use(
     saveUninitialized: true,
   })
 );
+app.use(methodOverride("_method"));
 
 app.get('/', (req, res) => {
   res.render('index.ejs', {
@@ -38,18 +40,19 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/vip-lounge', (req, res) => {
-  if (req.session.user) {
-    res.send(`Welcome to the party ${req.session.user.username}.`);
-  } else {
-    res.send('Sorry, no guests allowed.');
-  }
-});
+// app.get('/vip-lounge', (req, res) => {
+//   if (req.session.user) {
+//     res.send(`Welcome to the party ${req.session.user.username}.`);
+//   } else {
+//     res.send('Sorry, no guests allowed.');
+//   }
+// });
 
 app.use(passUserToView);
 app.use('/auth', authController);
 app.use(isSignedIn);
 app.use('/users/:userId/foods', foodsController);
+app.use('/users', usersController)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
