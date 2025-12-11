@@ -92,9 +92,8 @@
       const foodItem = currentUser.pantry.id(req.params.itemId);
 
       foodItem.set(req.body);
-
-      await currentUser.save();
       
+      await currentUser.save();
       res.redirect(
         `/users/${currentUser._id}/foods/${req.params.itemId}`
       );

@@ -5,13 +5,27 @@ const router = express.Router();
 
 const User = require('../models/user.js');
 
-  // INDEX — GET /users/:userId/foods
+  // INDEX — GET /users/
   router.get('/', async (req, res) => {
     try {
         const users = await User.find({});
 
         res.render('users/index.ejs', { users });
 
+    } catch (error) {
+      console.log(error);
+      res.redirect('/');
+    }
+  });
+
+   // SHOW - GET /users/:userId
+  router.get('/:userId', async (req, res) => {
+    try {
+      const user = await User.findById(req.params.userId).populate('pantry');
+
+      res.render('users/show.ejs', {
+        user
+      });
     } catch (error) {
       console.log(error);
       res.redirect('/');

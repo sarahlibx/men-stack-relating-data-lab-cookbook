@@ -1,0 +1,26 @@
+<!-- views/users/show.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= user.username %>'s Pantry</title>
+  </head>
+  <body>
+    <%- include('../partials/_navbar.ejs') %>
+    <h1>Welcome to <%= user.username %>'s Pantry</h1>
+    <br />
+    <% if (user.pantry && user.pantry.length > 0) { %>
+    <ul>
+      <% user.pantry.forEach((food) => { %>
+      <li><%= food.foods %></li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <p>There are no items in this pantry!</p>
+    <% } %>
+    <br />
+    <a href="/users/">Back to community</a>
+  </body>
+</html>

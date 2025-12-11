@@ -1,4 +1,4 @@
-<!-- views/users.ejs -->
+<!-- users/index.ejs -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +15,9 @@
 
     <ul>
       <% users.forEach(user => { %>
-      <li><%= user.username %></li>
+      <li>
+        <a href="/users/<%= user._id %>"><%= user.username %></a>
+      </li>
       <% }) %>
     </ul>
   </body>

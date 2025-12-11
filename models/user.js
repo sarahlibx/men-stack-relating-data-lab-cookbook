@@ -5,6 +5,15 @@ const foodSchema = mongoose.Schema({
   foods: {
     type: String,
     required: true,
+  }, 
+  expiration: {
+    type: Date,
+    required: false,
+  },
+  quantity: {
+    type: Number, 
+    required: false,
+    min: 0,
   }
 });
 
