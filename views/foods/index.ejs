@@ -15,7 +15,9 @@
     <ul>
       <% pantry.forEach((food) => { %>
       <li>
-        <%= food.foods %>
+        <%= food.foods %> <% if (food.expiration) { %> | Expiration date: <%=
+        food.expiration.toDateString() %> <% } %> | Quantity: <%= food.quantity
+        %>
         <!--SHOW-->
         <a href="/users/<%= user._id %>/foods/<%= food._id %>"> </a>
         <br />

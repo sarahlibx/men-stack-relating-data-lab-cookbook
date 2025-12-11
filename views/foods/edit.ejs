@@ -22,6 +22,23 @@
         value="<%= foodItem.foods %>"
       />
 
+      <label for="expiration">Expiration Date:</label>
+      <input
+        type="date"
+        name="expiration"
+        id="expiration"
+        value="<%= foodItem.date %>"
+      />
+
+      <label for="quantity">Quantity:</label>
+      <input
+        type="number"
+        name="quantity"
+        id="quantity"
+        min="0"
+        value="<%= foodItem.quantity %>"
+      />
+
       <button type="submit">Update pantry item</button>
     </form>
     <a href="/users/<%= user._id %>/foods">Back</a>
